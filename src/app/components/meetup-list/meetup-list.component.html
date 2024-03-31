@@ -1,0 +1,51 @@
+<section class="meetups">
+  <ul class="meetups-list">
+    <li class="meetups-item">
+      <div>
+        <div class="about-container">
+          <div>
+            <div class="title-container">
+              <h3 class="title">Angular vs React</h3>
+              <p class="subscribers">321 подписчик</p>
+            </div>
+            <p class="description">Расскажу о том, об этом. О том, об этом. О том, об этом. О том, об этом. О том, об этом. О том, об этом. О том, об этом. О том, об этом.</p>
+          </div>
+            <div class="date-container">
+              <p class="meet-date"> 14.08.22 13:00</p>
+              <p class="meet-place">Переговорная 14</p>
+            </div> 
+        </div>
+        <div class="accordion-content" [ngClass]="{'accordion-content-active': isAccordionOpen}">
+            <h5>Целевая аудитория</h5>
+            <p>разрабы, аналитики, и проч</p>
+            <h5>Что надо знать</h5>
+            <ul>
+                <li>Вот это</li>
+                <li>Вот это</li>
+                <li>Вот это</li>
+                <li>Вот это</li>
+            </ul>
+            <h5>Что будет</h5>
+            <ul>
+                <li>вот этому научу</li>
+                <li>вот этому научу</li>
+                <li>вот этому научу</li>
+                <li>вот этому научу</li>
+            </ul>
+            <h5>Почему надо обязательно прийти?</h5>
+            <p>У меня красный пояс по C++</p>
+        </div>
+        <div class="about-container">
+            <div class="about-container">
+              <div class="author-icon"></div>
+              <p class="author">Хабибова Юля</p>
+            </div>
+            <div class="button-container">
+                <button class="save-button" (click)="toggleButtonText()" [ngClass]="{ 'save-button-active': isButtonActive }">{{ buttonText }}</button>
+                <button class="accord-button" (click)="toggleAccordion()" [ngClass]="{'accord-button-rotate': isAccordionOpen}"></button>
+            </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</section>

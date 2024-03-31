@@ -1,0 +1,5 @@
+<div class="itemContainer" *ngIf="item">
+<div class='name' [ngClass]="{'done': item.isCompleted}" (click)="onDone.emit()">{{item.name}}</div>
+<div class='delete' (click)="onRemove.emit()">x</div>
+<div class="star" [ngClass]="{'star-important':item.important}" (click)="onStar.emit()"></div>
+</div>

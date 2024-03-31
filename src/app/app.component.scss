@@ -1,0 +1,41 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 18px 70px;
+  background-color: #073042;
+}
+
+.logo {
+ background-image: url(../img/MeetUps.png);
+ width: 100px;
+ height: 25px;
+ background-size: contain;
+ background-repeat: no-repeat;
+ cursor: pointer;
+}
+
+.about {
+  text-decoration: none;
+  color: #FFF;
+  text-align: right;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  margin-right: 30px;
+}
+
+.about.active {
+  text-decoration: underline;
+}
+
+.about:hover {
+  opacity: 0.7;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}

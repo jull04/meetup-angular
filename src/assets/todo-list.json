@@ -1,0 +1,16 @@
+{
+    "items":[
+        {
+            "name": "first",
+            "isCompleted": false,
+            "important": false,
+            "id": 1
+        },
+        {
+            "name": "second",
+            "isCompleted": true,
+            "important": true,
+            "id": 2
+        }
+    ]
+}

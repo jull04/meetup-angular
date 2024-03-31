@@ -1,0 +1,11 @@
+@import "bootstrap/scss/bootstrap";
+
+.page {
+  margin: 0 auto;
+  background-color: #1E1E1E;
+  color: #FFFFFF;
+  box-sizing: border-box;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}

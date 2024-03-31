@@ -1,0 +1,26 @@
+.about {
+  padding: 110px 70px 100px;
+}
+
+.about-title {
+  margin: 0 50px;
+  padding-bottom: 26px;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border-bottom: 1px solid #DADADA;
+  letter-spacing: -0.88px;
+}
+
+.about-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 50px;
+}
+
+.about-description {
+  font-size: 25px;
+  width: 450px;
+}

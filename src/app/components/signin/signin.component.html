@@ -1,0 +1,41 @@
+<section class='register'>
+  <h1 class='register__title'>Рады видеть!</h1>
+  <form  class='register__form' name='profile-edit'  *ngIf="form"
+  [formGroup]="form" noValidate (ngSubmit)="onSubmit()">
+  <label class='register__label'>
+    <span class='register__span'>E-mail</span>
+    <input
+      class='register__input'
+      id='email'
+      name='email'
+      type='email'
+      placeholder='Введите email'
+      required
+      formControlName="email"
+    />
+    <span class='register__error'></span>
+  </label>
+  <label class='register__label'>
+    <span class='register__span'>Пароль</span>
+    <input
+      class='register__input'
+      minLength='6'
+      maxLength='20'
+      id='password'
+      name='password'
+      type='password'
+      placeholder='Введите пароль'
+      required
+      formControlName="password"
+    />
+    <span class='register__error'></span>
+  </label>
+  <button
+    class="login__submit"
+    type='submit'>Войти
+  </button>
+  </form>
+  <p class='register__subtitle'>Еще не зарегестрированы?
+    <a class="register__signin" routerLink="/signup">Регистрация</a>
+  </p>
+</section>

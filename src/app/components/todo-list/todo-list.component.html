@@ -1,0 +1,26 @@
+<h1 class="title">Todo List</h1>
+<br/>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <app-search (onSearch)="handleSearch($event)"></app-search>
+    <app-todo-form (onAddTask)="handleAddTask($event)"></app-todo-form>
+    <div>
+      <ng-container *ngIf="todoService.todos$ | async as todos">
+        <div
+          *ngFor="let todo of todos | filterTodos : search : filter; let i = index"
+          class="listContainer"
+        >
+          <div class="itemContainer">
+            <div class="number">{{ i + 1 }}</div>
+            <app-todo-item
+              [item]="todo"
+              (onDone)="handleDone(todo.id)"
+              (onStar)="handleStar(todo.id)"
+              (onRemove)="handleRemove(todo.id)"
+            ></app-todo-item>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

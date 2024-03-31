@@ -1,0 +1,35 @@
+.itemContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 500px;
+  margin-right: 10px;
+}
+
+.name {
+  width: 100px;
+  cursor: pointer;
+}
+
+.done {
+  text-decoration: line-through;
+}
+
+.star {
+  background-image: url(../../../img/star-regular.svg);
+  background-repeat: no-repeat;
+  background-size: 20px;
+  background-position: center;
+  width: 24px;
+  cursor: pointer;
+}
+
+.star-important {
+  background-image: url(../../../img/star-solid.svg);
+  cursor: pointer;
+}
+
+.delete {
+  color: #dc3545;;
+  font-weight: bold;
+  cursor: pointer;
+}
