@@ -1,0 +1,61 @@
+.user {
+    margin: 0 auto;
+}
+
+.user-list {
+  display: flex;
+  flex-direction: column;
+  margin: 50px auto;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-item {
+  display: flex;
+  flex-direction: row;
+  width: 851px;
+  height: 60px;
+  background-color: #2C2C2C;
+  border: 0.5px solid #E9E9E9;
+}
+
+.user-email {
+  padding: 10px;
+  background-color: transparent;
+  width: 270px;
+}
+
+.user-password {
+  padding: 10px;
+  background-color: transparent;
+  width: 251px;
+}
+
+.user-role {
+  padding: 10px;
+  background-color: transparent;
+  width: 192px;
+}
+
+.icon-container {
+  display: flex;
+  flex-direction: row;
+  padding: 10px 30px;
+  width: 138px;
+}
+
+.edit {
+  background-image: url(../../../img/edit.svg);
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.delete {
+  background-image: url(../../../img/close.svg);
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
