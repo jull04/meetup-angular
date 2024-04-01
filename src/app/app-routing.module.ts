@@ -36,6 +36,10 @@ const routes: Routes = [
     component: UsersComponent,
     canActivate: [authGuard]
   },
+  {
+    path: '**',
+    redirectTo: '/about',
+  },
 ];
 
 @NgModule({

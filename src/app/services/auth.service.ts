@@ -21,7 +21,10 @@ export class AuthService {
     return this.http
       .post<{ token: string }>(`${this.baseUrl}/login`, user)
       .pipe(
-        tap((res: { token: string }) => this.window?.localStorage.setItem('user_token', res.token)),
+        tap((res: { token: string }) => {
+          this.window?.localStorage.setItem('user_token', res.token);
+          this.updateUser();
+        }),
         map((res: { token: string }): User => this.parseJwt(res.token)),
         catchError((error): Observable<never> => {
           console.error(error.error.message);
@@ -74,5 +77,6 @@ export class AuthService {
   public logout() {
     this.window?.localStorage.removeItem('user_token');
     this.routes.navigate(['/signin']);
+    this.user$.next(null);
   }
 }
