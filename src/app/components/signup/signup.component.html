@@ -1,52 +1,52 @@
-<section class='register'>
-  <h1 class='register__title'>Добро пожаловать!</h1>
-  <form  class='register__form' name='profile-edit' noValidate *ngIf="form"
+<section class="register">
+  <h1 class="register-title">Добро пожаловать!</h1>
+  <form  class="register-form" name="profile-edit" noValidate *ngIf="form"
   [formGroup]="form"
   (ngSubmit)="onSubmit()">
-  <label class='register__label'>
-    <span class='register__span'>E-mail</span>
+  <label class="register-label">
+    <span class="register-span">E-mail</span>
     <input
-      class='register__input'
-      id='email'
-      name='email'
-      type='email'
-      placeholder='Введите email'
+      class="register-input"
+      id="email"
+      name="email"
+      type="email"
+      placeholder="Введите email"
       required
       formControlName="email"
     />
-    <span class='register__error'></span>
+    <span class="register-error"></span>
   </label>
-  <label class='register__label'>
-    <span class='register__span'>Пароль</span>
+  <label class="register-label">
+    <span class="register-span">Пароль</span>
     <input
-      class='register__input'
-      id='password'
-      name='password'
-      type='password'
-      placeholder='Введите пароль'
+      class="register-input"
+      id="password"
+      name="password"
+      type="password"
+      placeholder="Введите пароль"
       required
       formControlName="password"
     />
-    <span class='register__error'></span>
+    <span class="register-error"></span>
   </label>
-  <label class='register__label'>
-    <span class='register__span'>ФИО</span>
+  <label class="register-label">
+    <span class="register-span">ФИО</span>
     <input
-      class='register__input'
-      id='fio'
-      name='fio'
-      placeholder='Введите ФИО'
+      class="register-input"
+      id="fio"
+      name="fio"
+      placeholder="Введите ФИО"
       required
       formControlName="fio"
     />
-    <span class='register__error'></span>
+    <span class="register-error"></span>
   </label>
   <button
-    class="register__submit"
-    type='submit'>Зарегистрироваться
+    class="register-submit"
+    type="submit">Зарегистрироваться
   </button>
   </form>
-  <p class='register__subtitle'>Уже зарегестрированы?
-    <a class="register__signin" routerLink="/signin">Войти</a>
+  <p class="register-subtitle">Уже зарегестрированы?
+    <a class="register-signin" routerLink="/signin">Войти</a>
   </p>
 </section>

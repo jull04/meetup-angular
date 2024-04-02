@@ -17,6 +17,7 @@ import { jwtInterceptor } from './interceptors/auth.interceptor';
 import { MeetupListComponent } from './components/meetup-list/meetup-list.component';
 import { UsersComponent } from './components/users/users.component';
 import { CommonModule } from '@angular/common';
+import { MeetupPopupComponent } from './components/meetup-popup/meetup-popup.component';
 
 @NgModule({
   declarations: [
@@ -30,15 +31,16 @@ import { CommonModule } from '@angular/common';
     SignupComponent,
     SigninComponent,
     MeetupListComponent,
-    UsersComponent
+    UsersComponent,
+    MeetupPopupComponent
   ],
   imports: [
-    BrowserModule,
     CommonModule,
+    BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     provideHttpClient(withFetch()),

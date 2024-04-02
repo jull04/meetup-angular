@@ -1,5 +1,7 @@
 .user {
-    margin: 0 auto;
+  margin: 0 280px;
+  display: flex;
+  flex-direction: column;
 }
 
 .user-list {
@@ -10,6 +12,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 10px;
 }
 
 .user-item {
@@ -22,21 +25,31 @@
 }
 
 .user-email {
-  padding: 10px;
+  margin: 10px;
   background-color: transparent;
   width: 270px;
+  color: white;
+  border-radius: 5px;
+  border: none;
 }
 
 .user-password {
-  padding: 10px;
+  margin: 10px;
   background-color: transparent;
   width: 251px;
+  border-radius: 5px;
+  color: white;
+  border: none;
 }
 
 .user-role {
-  padding: 10px;
+  margin: 10px;
   background-color: transparent;
   width: 192px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  border: none;
 }
 
 .icon-container {
@@ -44,6 +57,7 @@
   flex-direction: row;
   padding: 10px 30px;
   width: 138px;
+  gap: 10px
 }
 
 .edit {
@@ -53,9 +67,33 @@
   cursor: pointer;
 }
 
+.edit:hover {
+  opacity: 0.7;
+}
+
 .delete {
   background-image: url(../../../img/close.svg);
   width: 35px;
   height: 35px;
   cursor: pointer;
+}
+
+.delete:hover {
+  opacity: 0.7;
+}
+
+.user-add {
+  width: 150px;
+  border-radius: 5px;
+  background-color: #073042;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  margin: 20px 0 0 auto;
+  font-size: 14px;
+}
+
+.user-add:hover {
+  opacity: 0.7;
 }

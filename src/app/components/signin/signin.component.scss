@@ -11,13 +11,7 @@
   }
 }
 
-@media  screen and (max-width: 767px) {
-  .header__logo-min {
-    margin: 0 auto ;
-  }
-}
-
-.register__title {
+.register-title {
   margin: 40px 0;
   text-align: left;
   font-size: 24px;
@@ -27,12 +21,12 @@
 }
 
 @media  screen and (max-width: 767px) {
-  .register__title {
+  .register-title {
     text-align: center;
     margin: 50px auto 80px;
   }
 }
-.register__form {
+.register-form {
   display: flex;
   flex-direction: column;
   width: 396px;
@@ -40,17 +34,17 @@
 }
 
 @media  screen and (max-width: 767px) {
-  .register__form {
+  .register-form {
     width: 260px;
   }
 }
 
-.register__label {
+.register-label {
   display: flex;
   flex-direction: column;
 }
 
-.register__span {
+.register-span {
   color: #8B8B8B;
   font-size: 10px;
   font-style: normal;
@@ -59,7 +53,7 @@
   margin-bottom: 5px;
 }
 
-.register__input {
+.register-input {
   padding: 0;
   background: transparent;
   border: none;
@@ -72,7 +66,7 @@
   margin-bottom: 10px;
 }
 
-.register__error {
+.register-error {
   height: 12px;
   border-top: 1px solid #424242;
   margin: 0 0 6px;
@@ -84,7 +78,7 @@
   transition: .3s;
 }
 
-.login__submit {
+.login-submit {
   width: 100%;
   height: 45px;
   margin: 197px auto 16px;
@@ -100,21 +94,21 @@
   cursor: pointer;
 }
 
-.register__submit_disabled {
+.register-submit-disabled {
   background-color: white;
   color: black;
   cursor: default;
 }
 
-.register__submit_disabled:hover {
+.register-submit-disabled:hover {
   opacity: 1;
 }
 
-.register__submit:hover {
+.register-submit:hover {
   opacity: 0.7;
 }
 
-.register__subtitle {
+.register-subtitle {
   color: #8B8B8B;
   text-align: center;
   font-size: 14px;
@@ -124,12 +118,12 @@
 }
 
 @media  screen and (max-width: 767px) {
-  .register__subtitle {
+  .register-subtitle {
     font-size: 12px;
   }
 }
 
-.register__signin {
+.register-signin {
   text-decoration: none;
   color: #4285F4;
   text-align: center;
@@ -141,11 +135,11 @@
 }
 
 @media  screen and (max-width: 767px) {
-  .register__signin {
+  .register-signin {
     font-size: 12px;
   }
 }
 
-.register__signin:hover {
+.register-signin:hover {
   opacity: 0.7;
 }

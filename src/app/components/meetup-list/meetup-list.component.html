@@ -1,63 +1,73 @@
 <section class="meetups">
   <form class="search-container" name="search" novalidate>
-    <input 
-      class="search-input" 
-      placeholder="Найти"
-      type="text"
-      name="search"
-    >
-    <button 
-      class="search-button"
-      type="submit"
-      >Поиск</button>
+    <input class="search-input" placeholder="Найти" type="text" name="search" />
+    <button class="search-button" type="submit">Поиск</button>
   </form>
   <ul class="meetups-list">
-    <li class="meetups-item">
-      <div>
+    <li class="meetup-item">
         <div class="about-container">
-          <div>
+          <div class="about-container-small">
             <div class="title-container">
               <h3 class="title">Angular vs React</h3>
               <p class="subscribers">321 подписчик</p>
             </div>
-            <p class="description">Расскажу о том, об этом. О том, об этом. О том, об этом. О том, об этом. О том, об этом. О том, об этом. О том, об этом. О том, об этом.</p>
+            <p class="short-description" [ngClass]="{ 'short-description-hidden': isAccordionOpen }">
+              Расскажу о том, об этом. О том, об этом. О том, об этом. О том, об
+              этом. О том, об этом. О том, об этом. О том, об этом. О том, об
+              этом.
+            </p>
           </div>
-            <div class="date-container">
-              <p class="meet-date"> 14.08.22 13:00</p>
-              <p class="meet-place">Переговорная 14</p>
-            </div> 
+          <div class="meet-container">
+            <p class="meet-date">14.08.22 13:00</p>
+            <p class="meet-place">Переговорная 14</p>
+          </div>
         </div>
-        <div class="accordion-content" [ngClass]="{'accordion-content-active': isAccordionOpen}">
-            <h5>Целевая аудитория</h5>
-            <p>разрабы, аналитики, и проч</p>
-            <h5>Что надо знать</h5>
-            <ul>
-                <li>Вот это</li>
-                <li>Вот это</li>
-                <li>Вот это</li>
-                <li>Вот это</li>
-            </ul>
-            <h5>Что будет</h5>
-            <ul>
-                <li>вот этому научу</li>
-                <li>вот этому научу</li>
-                <li>вот этому научу</li>
-                <li>вот этому научу</li>
-            </ul>
-            <h5>Почему надо обязательно прийти?</h5>
-            <p>У меня красный пояс по C++</p>
+        <div
+          class="accordion-content"
+          [ngClass]="{ 'accordion-content-active': isAccordionOpen }"
+        >
+          <p class="long-description">А здесь я ещё более подробно напишу об том, отб этом. О том, об этом. О том, об этом. О том, об этом. О том, об этом. О том, об этом. О том, об этом. О том, об этом. А здесь я ещё более подробно напишу об том, отб этом. О том, об этом. О том, об этом. О том, об этом. О том, об этом. О том, об этом. О том, об этом. О том, об этом. А здесь я ещё более подробно напишу об том, отб этом. О том, об этом. О том, об этом. О том, об этом. О том, об этом. О том, об этом. О том, об этом. О том, об этом. </p>
+          <h5 class="accordion-title">Целевая аудитория</h5>
+          <p class="accordion-subtitle">Разрабы, аналитики, и прочие</p>
+          <h5>Что надо знать</h5>
+          <ul class="accordion-subtitle list">
+            <li>Вот это</li>
+            <li>Вот это</li>
+            <li>Вот это</li>
+            <li>Вот это</li>
+          </ul>
+          <h5 class="accordion-title">Что будет</h5>
+          <ul class="accordion-subtitle list">
+            <li>Вот этому научу</li>
+            <li>Вот этому научу</li>
+            <li>Вот этому научу</li>
+            <li>Вот этому научу</li>
+          </ul>
+          <h5 class="accordion-title">Почему надо обязательно прийти?</h5>
+          <p class="accordion-subtitle">У меня красный пояс по C++</p>
         </div>
-        <div class="about-container">
-            <div class="about-container">
-              <div class="author-icon"></div>
-              <p class="author">Хабибова Юля</p>
-            </div>
-            <div class="button-container">
-                <button class="save-button" (click)="toggleButtonText()" [ngClass]="{ 'save-button-active': isButtonActive}">{{ buttonText }}</button>
-                <button class="accord-button" (click)="toggleAccordion()" [ngClass]="{'accord-button-rotate': isAccordionOpen}"></button>
-            </div>
+        <div class="author-container-big">
+          <div class="author-container">
+            <div class="author-icon"></div>
+            <p class="author">Хабибова Юля</p>
+          </div>
+          <div class="button-container">
+            <button
+              class="save-button"
+              (click)="toggleButtonText()"
+              [ngClass]="{ 'save-button-active': isButtonActive }"
+            >
+              {{ buttonText }}
+            </button>
+            <button
+              class="accord-button"
+              (click)="toggleAccordion()"
+              [ngClass]="{ 'accord-button-rotate': isAccordionOpen }"
+            ></button>
+          </div>
         </div>
-      </div>
     </li>
   </ul>
+  <button class="add-button" (click)="openPopup()">Создать митап</button>
+  <app-meetup-popup *ngIf="popupService.isOpened()"></app-meetup-popup>
 </section>

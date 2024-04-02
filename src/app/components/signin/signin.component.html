@@ -1,41 +1,41 @@
-<section class='register'>
-  <h1 class='register-title'>Рады видеть!</h1>
-  <form  class='register-form' name='profile-edit'  *ngIf="form"
+<section class="register">
+  <h1 class="register-title">Рады видеть!</h1>
+  <form  class="register-form" name="profile-edit"  *ngIf="form"
   [formGroup]="form" noValidate (ngSubmit)="onSubmit()">
-  <label class='register-label'>
-    <span class='register-span'>E-mail</span>
+  <label class="register-label">
+    <span class="register-span">E-mail</span>
     <input
-      class='register-input'
-      id='email'
-      name='email'
-      type='email'
-      placeholder='Введите email'
+      class="register-input"
+      id="email"
+      name="email"
+      type="email"
+      placeholder="Введите email"
       required
       formControlName="email"
     />
-    <span class='register-error'></span>
+    <span class="register-error"></span>
   </label>
-  <label class='register-label'>
-    <span class='register-span'>Пароль</span>
+  <label class="register-label">
+    <span class="register-span">Пароль</span>
     <input
-      class='register-input'
-      minLength='6'
-      maxLength='20'
-      id='password'
-      name='password'
-      type='password'
-      placeholder='Введите пароль'
+      class="register-input"
+      minLength="6"
+      maxLength="20"
+      id="password"
+      name="password"
+      type="password"
+      placeholder="Введите пароль"
       required
       formControlName="password"
     />
-    <span class='register-error'></span>
+    <span class="register-error"></span>
   </label>
   <button
     class="login-submit"
     type='submit'>Войти
   </button>
   </form>
-  <p class='register-subtitle'>Еще не зарегестрированы?
+  <p class="register-subtitle">Еще не зарегестрированы?
     <a class="register-signin" routerLink="/signup">Регистрация</a>
   </p>
 </section>
