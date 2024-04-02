@@ -27,7 +27,6 @@ export class SigninComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form.value)
     this.auth
       .login(this.form.value)
       .pipe(

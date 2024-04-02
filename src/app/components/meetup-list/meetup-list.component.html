@@ -1,4 +1,16 @@
 <section class="meetups">
+  <form class="search-container" name="search" novalidate>
+    <input 
+      class="search-input" 
+      placeholder="Найти"
+      type="text"
+      name="search"
+    >
+    <button 
+      class="search-button"
+      type="submit"
+      >Поиск</button>
+  </form>
   <ul class="meetups-list">
     <li class="meetups-item">
       <div>
@@ -41,7 +53,7 @@
               <p class="author">Хабибова Юля</p>
             </div>
             <div class="button-container">
-                <button class="save-button" (click)="toggleButtonText()" [ngClass]="{ 'save-button-active': isButtonActive }">{{ buttonText }}</button>
+                <button class="save-button" (click)="toggleButtonText()" [ngClass]="{ 'save-button-active': isButtonActive}">{{ buttonText }}</button>
                 <button class="accord-button" (click)="toggleAccordion()" [ngClass]="{'accord-button-rotate': isAccordionOpen}"></button>
             </div>
         </div>

@@ -27,7 +27,6 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form.value)
     this.auth
       .register(this.form.value)
       .pipe(

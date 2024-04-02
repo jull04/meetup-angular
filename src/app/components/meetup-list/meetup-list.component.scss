@@ -1,11 +1,12 @@
 .meetups {
-  padding: 20px;
+  padding: 20px 50px;
 }
 
 .meetups-list {
   list-style: none;
   display: flex;
   flex-direction: column;
+  padding: 0;
 }
 
 .meetups-item {
@@ -128,4 +129,111 @@
 .meet-place {
   margin-bottom: 55px;
   font-size: 14px;
+}
+
+.search-container {
+  border-radius: 8px;
+  border: 1.5px solid #424242;;
+  height: 72px;
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0 70px;
+}
+
+@media  screen and (max-width: 767px) {
+  .search-container {
+    height: 56px;
+  }
+}
+
+.search-input {
+  width: 90%;
+  margin: 25px;
+  color: #8B8B8B;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; 
+  background: transparent;
+  border: none;
+}
+
+@media  screen and (max-width: 767px) {
+  .search-input {
+    margin: 20px 12px;
+    font-size: 14px;
+  }
+}
+
+.search-button {
+  width: 100px;
+  border-radius: 5px;
+  background-color: #4285F4;
+  margin: 10px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0;
+}
+
+@media  screen and (max-width: 767px) {
+  .search-button {
+    margin: 6px;
+    font-size: 14px;
+  }
+}
+
+.search-button:hover {
+  opacity: 0.7;
+}
+
+.search-filter-container {
+  padding: 26px 0 43px;
+  border-bottom: 1px solid #424242;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+@media  (min-width: 768px) and (max-width: 1024px) {
+  .search-filter-container {
+    padding: 26px 0 51px;
+  }
+}
+
+@media  screen and (max-width: 767px) {
+  .search-filter-container {
+    padding: 30px 0 63px;
+  }
+}
+
+.search-filter-title {
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  margin: 0 0 0 14px;
+}
+
+@media  screen and (max-width: 767px) {
+  .search-filter-title {
+    font-size: 11px;
+  }
+}
+
+.input-error {
+  color: #FF004D;
+  font-size: 10px;
+}
+
+.search-button-disabled {
+  background-color: white;
+  color: black;
+  cursor: initial;
+}
+
+.search-button-disabled:hover {
+  opacity: 1;
 }
