@@ -1,5 +1,7 @@
-import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
+import { ExtendedMeetup, Meetup } from '../../models/meetup';
+import { AuthService } from '../../services/auth.service';
+import { MeetupService } from '../../services/meetup.service';
 import { PopupService } from '../../services/popup.service';
 
 @Component({
@@ -9,25 +11,11 @@ import { PopupService } from '../../services/popup.service';
 })
 export class MeetupListComponent {
 
-  constructor (public popupService: PopupService) {}
+  meetups$ = this.meetupService.getMeetups()
+
+  constructor (public popupService: PopupService, public meetupService: MeetupService, public authService: AuthService) {}
 
   openPopup() {
-    console.log('hi')
     this.popupService.open();
-  }
-
-  isAccordionOpen: boolean = false;
-
-  buttonText = 'Пойду';
-
-  isButtonActive = false;
-
-  toggleAccordion() {
-    this.isAccordionOpen = !this.isAccordionOpen;
-  }
-
-  toggleButtonText() {
-    this.buttonText = this.buttonText === 'Пойду' ? 'Не смогу пойти' : 'Пойду';
-    this.isButtonActive = !this.isButtonActive;
   }
 }

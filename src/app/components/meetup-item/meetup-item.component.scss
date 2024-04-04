@@ -1,0 +1,151 @@
+.meetup-item {
+background-color: #222;
+border-radius: 6px;
+display: flex;
+flex-direction: column;
+padding: 20px;
+}
+
+.title {
+margin: 0;
+}
+
+.subscribers {
+margin: 0;
+margin-top: 8px;
+color: #B85526;
+}
+
+.about-container {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+height: auto;
+}
+
+.title-container {
+display: flex;
+flex-direction: row;
+margin-bottom: 10px;
+gap: 10px;
+}
+
+.short-description {
+width: 600px;
+}
+
+.short-description-hidden {
+display: none;
+}
+
+.long-description {
+width: 600px;
+}
+
+.button-container {
+display: flex;
+gap: 10px;
+}
+
+.save-button {
+border: none;
+background-color: #073042;
+color: white;
+width: 160px;
+height: 50px;
+border-radius: 5px;
+padding: 0;
+cursor: pointer;
+}
+
+.save-button:hover {
+opacity: 0.7;
+}
+
+.accord-button {
+border: none;
+background-color: #B85526;
+width: 70px;
+height: 50px;
+border-radius: 5px;
+background-image: url(../../../img/image3.svg);
+background-repeat: no-repeat;
+padding: 10px;
+background-position: center center; 
+cursor: pointer;
+transition: transform ease 1s;
+}
+
+.save-button-active {
+background-color: #B4B4C0;
+}
+
+.accord-button-rotate {
+transform: rotate(180deg);
+}
+
+.accord-button:hover {
+opacity: 0.7;
+}
+
+.accordion-content {
+display: none;
+}
+
+.accordion-content-active {
+display: block;
+}
+
+.author-container-big {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+}
+
+.author-container {
+display: flex;
+gap: 10px;
+align-items: flex-end;
+}
+
+.author-icon {
+background-image: url(../../../img/author.svg);
+width: 25px;
+height: 25px;
+background-size: cover;
+}
+
+.author {
+margin: 0;
+}
+
+.meet-container {
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+}
+
+.meet-date {
+margin-bottom: 5px;
+font-size: 20px;
+}
+
+.meet-place {
+margin-bottom: 55px;
+font-size: 14px;
+}
+
+.accordion-title {
+font-weight: 400;
+margin-bottom: 10px;
+}
+
+.accordion-subtitle {
+margin-bottom: 20px;
+}
+
+.list {
+list-style-type: decimal;
+margin-bottom: 20px;
+padding-bottom: 10px;
+}

@@ -33,7 +33,7 @@ export class AuthService {
       );
   }
 
-  register(user: User): Observable<any>  {
+  register(user: User): Observable<any> {
     return this.http
       .post<{ token: string }>(`${this.baseUrl}/registration`, user)
       .pipe(tap(({ token }) => this.window?.localStorage.setItem('user_token', token)),
@@ -56,6 +56,7 @@ export class AuthService {
         })
         .join('')
     );
+    console.log(JSON.parse(jsonPayload))
     return JSON.parse(jsonPayload);
   }
 

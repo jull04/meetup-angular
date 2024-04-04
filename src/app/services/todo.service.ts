@@ -13,8 +13,7 @@ export class TodoService {
   url: string = '/assets/todo-list.json';
 
   constructor(
-    private _httpClient: HttpClient
-  ) { }
+    private _httpClient: HttpClient) { }
 
   saveTodo(newTodo: IItem) {
     if(newTodo) {
@@ -50,7 +49,6 @@ export class TodoService {
         console.log(response);
         this.todos = [];
         this.todos = [...this.todos, ...response?.items];
-
         this.todos$.next(this.todos);
         return response?.items
       })

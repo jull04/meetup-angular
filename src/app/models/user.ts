@@ -2,10 +2,10 @@ export interface User {
   id: number;
   email: string;
   password: string;
-  roles: UserRoles;
+  fio: string;
 }
 
-export interface UserRoles {
-	isUser: boolean;
-	isAdmin: boolean;
-}
+// export enum Roles {
+//   USER = "USER",
+//   ADMIN = "ADMIN"
+// }

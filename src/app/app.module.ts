@@ -18,6 +18,9 @@ import { MeetupListComponent } from './components/meetup-list/meetup-list.compon
 import { UsersComponent } from './components/users/users.component';
 import { CommonModule } from '@angular/common';
 import { MeetupPopupComponent } from './components/meetup-popup/meetup-popup.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { MeetupItemComponent } from './components/meetup-item/meetup-item.component';
+import { MeetupSearchComponent } from './components/meetup-search/meetup-search.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { MeetupPopupComponent } from './components/meetup-popup/meetup-popup.com
     SigninComponent,
     MeetupListComponent,
     UsersComponent,
-    MeetupPopupComponent
+    MeetupPopupComponent,
+    LoaderComponent,
+    MeetupItemComponent,
+    MeetupSearchComponent
   ],
   imports: [
     CommonModule,

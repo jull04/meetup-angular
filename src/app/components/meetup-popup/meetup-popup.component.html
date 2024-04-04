@@ -2,7 +2,7 @@
 <div class="popup-backdrop" (click)="closePopup()" [class.open]="popupService.isOpened"></div>
 <div class="popup">
   <div class="popup-content">
-    <button class="close-btn" (click)="closePopup()">X</button>
+    <button class="close-btn" (click)="closePopup()">x</button>
     <h2 class="form-title">Новый митап</h2>
     <form >
       <div class="form-group">
@@ -22,24 +22,24 @@
         <input class="form-input" type="text" id="location" name="location"  required>
       </div>
       <div class="form-group">
-        <label for="location">Короткое описание:</label>
-        <input class="form-input" type="text" id="location" name="location"  required>
+        <label for="short-descr">Короткое описание:</label>
+        <input class="form-input" type="text" id="short-descr" name="short-descr"  required>
       </div>
       <div class="form-group">
-        <label for="location">Подробное описание:</label>
-        <input class="form-input" type="text" id="location" name="location"  required>
+        <label for="long-descr">Подробное описание:</label>
+        <input class="form-input" type="text" id="long-descr" name="long-descr"  required>
       </div>
       <div class="form-group">
-        <label for="location">Целевая аудитория:</label>
-        <input class="form-input" type="text" id="location" name="location"  required>
+        <label for="target">Целевая аудитория:</label>
+        <input class="form-input" type="text" id="target" name="target"  required>
       </div>
       <div class="form-group">
-        <label for="location">Что надо знать?</label>
-        <input class="form-input" type="text" id="location" name="location"  required>
+        <label for="know">Что надо знать?</label>
+        <input class="form-input" type="text" id="know" name="know"  required>
       </div>
       <div class="form-group">
-        <label for="location">Почему надо обязательно прийти?</label>
-        <input class="form-input" type="text" id="location" name="location"  required>
+        <label for="reason">Почему надо обязательно прийти?</label>
+        <input class="form-input" type="text" id="reason" name="reason"  required>
       </div>
       <button class="save-button" type="submit">Создать</button>
     </form>
