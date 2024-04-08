@@ -1,18 +1,21 @@
 import { Component } from '@angular/core';
-import { BehaviorSubject, tap } from 'rxjs';
-import { ExtendedMeetup, Meetup } from '../../models/meetup';
 import { AuthService } from '../../services/auth.service';
 import { MeetupService } from '../../services/meetup.service';
 import { PopupService } from '../../services/popup.service';
+import { User } from '../../models/user';
+import { BehaviorSubject, map, tap } from 'rxjs';
+import { ExtendedMeetup } from '../../models/meetup';
 
 @Component({
-  selector: 'app-meetup-list',
-  templateUrl: './meetup-list.component.html',
-  styleUrl: './meetup-list.component.scss',
+  selector: 'app-my-meetup-list',
+  templateUrl: './my-meetup-list.component.html',
+  styleUrl: './my-meetup-list.component.scss'
 })
-export class MeetupListComponent {
+export class MyMeetupListComponent {
 
-  meetups$ = this.meetupService.meetups$
+  user: User;
+
+  meetups$ = this.meetupService.meetups$.pipe(map((meetups: ExtendedMeetup[]) => meetups.filter(meetup => meetup.owner?.id === this.authService.user$.value?.id)),)
   isLoading$ = new BehaviorSubject<boolean>(true);
 
   constructor (public popupService: PopupService, public meetupService: MeetupService, public authService: AuthService) {}

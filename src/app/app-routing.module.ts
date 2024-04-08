@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './components/about/about.component';
 import { MeetupListComponent } from './components/meetup-list/meetup-list.component';
+import { MyMeetupListComponent } from './components/my-meetup-list/my-meetup-list.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
-import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { UsersComponent } from './components/users/users.component';
 import { authGuard } from './guards/auth.guard';
+import { adminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   {
@@ -28,18 +29,18 @@ const routes: Routes = [
   },
   {
     path: 'my-meetups',
-    component: MeetupListComponent,
+    component: MyMeetupListComponent,
     canActivate: [authGuard]
   },
   {
     path: 'users',
     component: UsersComponent,
-    canActivate: [authGuard]
+    canActivate: [authGuard, adminGuard]
   },
-  {
-    path: '**',
-    redirectTo: '/about'
-  },
+  // {
+  //   path: '**',
+  //   redirectTo: '/about'
+  // },
 ];
 
 @NgModule({

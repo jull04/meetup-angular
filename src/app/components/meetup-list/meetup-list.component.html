@@ -1,11 +1,9 @@
 <section class="meetups">
-  <form class="search-container" name="search" novalidate>
-    <input class="search-input" placeholder="Найти" type="text" name="search" />
-    <button class="search-button" type="submit">Поиск</button>
-  </form>
+  <app-meetup-search></app-meetup-search>
+  <button class="add-button" (click)="openPopup()">Создать митап</button>
+  <app-meetup-popup *ngIf="popupService.isOpened()"></app-meetup-popup>
+  <app-loader *ngIf="isLoading$ | async"></app-loader>
   <ul class="meetups-list" *ngFor="let meetup of meetups$ | async">
     <app-meetup-item [item]="meetup"></app-meetup-item>
   </ul>
-  <button class="add-button" (click)="openPopup()">Создать митап</button>
-  <app-meetup-popup *ngIf="popupService.isOpened()"></app-meetup-popup>
 </section>

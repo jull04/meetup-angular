@@ -1,0 +1,76 @@
+.user-item {
+  display: flex;
+  flex-direction: row;
+  width: 851px;
+  height: 60px;
+  background-color: #2c2c2c;
+  border: 0.5px solid #e9e9e9;
+}
+
+.user-email {
+  margin: 10px;
+  background-color: transparent;
+  width: 270px;
+  color: white;
+  border-radius: 5px;
+  border: none;
+}
+
+.user-password {
+  margin: 10px;
+  background-color: transparent;
+  width: 251px;
+  border-radius: 5px;
+  color: white;
+  border: none;
+}
+
+.user-role {
+  margin: 10px;
+  background-color: transparent;
+  width: 192px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+
+.icon-container {
+  display: flex;
+  flex-direction: row;
+  padding: 10px 30px;
+  width: 138px;
+  gap: 10px;
+}
+
+.edit {
+  background-image: url(../../../img/edit.svg);
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.active {
+  background-image: url(../../../img/image3.svg);
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-top: 5px;
+}
+
+.edit:hover {
+  opacity: 0.7;
+}
+
+.delete {
+  background-image: url(../../../img/close.svg);
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.delete:hover {
+  opacity: 0.7;
+}

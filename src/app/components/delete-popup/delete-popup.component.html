@@ -1,0 +1,14 @@
+<div
+  class="popup-backdrop"
+  (click)="closePopup()"
+  [class.open]="popupService.isOpened"
+></div>
+<div class="popup">
+  <div class="popup-content">
+    <button class="close-btn" (click)="closePopup()">х</button>
+    <h2 class="form-title">Вы уверены?</h2>
+    <form>
+      <button class="save-button" type="submit">Удалить</button>
+    </form>
+  </div>
+</div>

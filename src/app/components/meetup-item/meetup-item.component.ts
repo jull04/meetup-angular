@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { domainToASCII } from 'url';
-import { ExtendedMeetup, Meetup } from '../../models/meetup';
+import { ExtendedMeetup } from '../../models/meetup';
+import { MeetupService } from '../../services/meetup.service';
 
 @Component({
   selector: 'app-meetup-item',
@@ -8,6 +8,30 @@ import { ExtendedMeetup, Meetup } from '../../models/meetup';
   styleUrl: './meetup-item.component.scss'
 })
 export class MeetupItemComponent {
+
+  constructor(private meetupService: MeetupService) {}
+
+  // onSaveButtonClick(user: User, meetup: ExtendedMeetup) {
+  //   if (/* пользователь подписан на митап */) {
+  //     this.meetupService.unsubscribeFromMeetup(user, meetup).subscribe(
+  //       (response) => {
+  //         // Обработка успешной отписки
+  //       },
+  //       (error) => {
+  //         // Обработка ошибки отписки
+  //       }
+  //     );
+  //   } else {
+  //     this.meetupService.subscribeForMeetup(user, meetup).subscribe(
+  //       (response) => {
+  //         // Обработка успешной подписки
+  //       },
+  //       (error) => {
+  //         // Обработка ошибки подписки
+  //       }
+  //     );
+  //   }
+  // }
 
   @Input() item: ExtendedMeetup;
 

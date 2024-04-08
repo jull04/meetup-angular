@@ -3,7 +3,7 @@
     <div class="about-container-small">
       <div class="title-container">
         <h3 class="title">{{ item.name }}</h3>
-        <p class="subscribers">{{ item.users.length}} подписчик</p>
+        <p class="subscribers">{{ item.users.length }} подписчик</p>
       </div>
       <p
         class="short-description"
@@ -22,7 +22,7 @@
     [ngClass]="{ 'accordion-content-active': isAccordionOpen }"
   >
     <p class="long-description">
-        {{ item.description }}
+      {{ item.description }}
     </p>
     <h5 class="accordion-title">Целевая аудитория</h5>
     <p class="accordion-subtitle">{{ item.target_audience }}</p>
@@ -47,6 +47,7 @@
       <p class="author">{{ item.owner.fio }}</p>
     </div>
     <div class="button-container">
+        <!-- (click)="onSaveButtonClick(currentUser, currentMeetup)" -->
       <button
         class="save-button"
         (click)="toggleButtonText()"

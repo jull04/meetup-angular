@@ -1,4 +1,4 @@
-import { User } from "./user"; 
+import { User } from "./user";
 
 export interface Meetup {
   name: string;
@@ -8,23 +8,13 @@ export interface Meetup {
   need_to_know: string;
   will_happen: string;
   reason_to_come: string;
-  time: Date;
+  time: string;
   duration: number;
-  createdBy: number;
 }
 
 export interface ExtendedMeetup extends Meetup {
-    id: number;
-    name: string;
-    description: string;
-    location: string;
-    target_audience: string;
-    need_to_know: string;
-    will_happen: string;
-    reason_to_come: string;
-    time: Date;
-    duration: number;
-    createdBy: number;
-    owner: User;
-    users: User[];
+  id: number;
+  createdBy: number;
+  owner: User;
+  users: User[];
 }

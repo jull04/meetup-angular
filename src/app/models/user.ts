@@ -3,9 +3,9 @@ export interface User {
   email: string;
   password: string;
   fio: string;
+  roles: Role[];
 }
 
-// export enum Roles {
-//   USER = "USER",
-//   ADMIN = "ADMIN"
-// }
+export interface Role {
+  name: string;
+}

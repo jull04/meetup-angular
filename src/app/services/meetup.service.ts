@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, tap } from 'rxjs';
+import { BehaviorSubject, catchError, filter, map, Observable, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { ExtendedMeetup, Meetup } from '../models/meetup';
 import { User } from '../models/user';
@@ -14,6 +14,8 @@ export class MeetupService {
 
   baseUrl: string = `${environment.base_url}`;
 
+  meetups$ = new BehaviorSubject<ExtendedMeetup[]>([])
+
   constructor(private http: HttpClient, authService: AuthService) { }
 
   getMeetups(): Observable<ExtendedMeetup[]> {
@@ -23,12 +25,37 @@ export class MeetupService {
       })
     })
     .pipe(
+      map(meetups => {
+        if (meetups) {
+          return meetups.filter(meetup => meetup.owner !== null);
+        } else {
+          return [];
+        }
+      }),
+      tap(meetups => {
+        this.meetups$.next(meetups)
+      }),
+      
       catchError((error): Observable<never> => {
         console.error(error.error.message);
         throw new Error(error.error.message);
       })
     )
   }
+
+  // getMyMeetups(user: User): Observable<ExtendedMeetup[]> {
+  //   return this.http.get<ExtendedMeetup[]>(`${this.baseUrl}/meetup`, {
+  //     headers: new HttpHeaders({
+  //       'Content-Type': 'application/json'
+  //     })
+  //   })
+  //   .pipe(
+  //     catchError((error): Observable<never> => {
+  //       console.error(error);
+  //       throw new Error(error.error.message);
+  //     })
+  //   );
+  // }
 
   createMeetup(meetup: Meetup): Observable<ExtendedMeetup> {
     return this.http.post<ExtendedMeetup>(`${this.baseUrl}/meetup`, meetup, {
@@ -37,6 +64,9 @@ export class MeetupService {
       })
     })
     .pipe(
+      tap(createdMeetup => {
+        this.meetups$.next([createdMeetup, ...this.meetups$.value])
+      }),
       catchError((error): Observable<never> => {
         console.error(error.error.message);
         throw new Error(error.error.message);
