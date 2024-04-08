@@ -1,0 +1,24 @@
+<header class="header">
+  <div routerLink="/about" class="logo"></div>
+  <div class=".header-container" *ngIf="!(authService.user$ | async)">
+    <a class="about" routerLinkActive="active" routerLink="/signup"
+      >Регистрация</a
+    >
+    <a class="about" routerLinkActive="active" routerLink="/signin">Войти</a>
+  </div>
+  <div class=".header-container" *ngIf="authService.user$ | async as user">
+    <a class="about" routerLinkActive="active" routerLink="/all-meetups"
+      >Все Митапы</a
+    >
+    <a class="about" routerLinkActive="active" routerLink="/my-meetups"
+      >Мои Митапы</a
+    >
+    <ng-container *ngIf="userService.isCurrentUserAdmin$() | async">
+      <a class="about" routerLinkActive="active" routerLink="/users"
+        >Пользователи</a
+      >
+    </ng-container>
+    <span class="about">{{ (authService.user$ | async)?.email }}</span>
+    <a class="about" routerLink="/signin" (click)="handleLogout()">Выйти</a>
+  </div>
+</header>

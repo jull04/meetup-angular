@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { Role, User } from '../models/user';
+import { User } from '../models/user';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -14,10 +14,6 @@ export class UserService {
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
-  // currentUser: User | null = null; 
-  // currentRole: Role;
-
- 
   isCurrentUserAdmin$(): Observable<boolean> {
     return this.authService.user$.pipe(map(user => user ? user.roles.some(role => role.name === 'ADMIN') : false))
   }
@@ -36,8 +32,8 @@ export class UserService {
     )
   }
 
-  addUser(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.baseUrl}/user`, {
+  editUser(id: number, user: User): Observable<User[]> {
+    return this.http.put<User[]>(`${this.baseUrl}/user/${id}`, user, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
@@ -50,4 +46,13 @@ export class UserService {
     )
   }
 
+  deleteUser(id: number): Observable<User[]> {
+    return this.http.delete<User[]>(`${this.baseUrl}/user/${id}`)
+    .pipe(
+      catchError((error): Observable<never> => {
+        console.error(error.error.message);
+        throw new Error(error.error.message);
+      })
+    )
+  }
 }

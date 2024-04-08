@@ -23,23 +23,40 @@ export class MeetupPopupComponent implements OnInit {
     public fb: FormBuilder
   ) {}
 
-  ngOnInit(): void {
-    this.form = this.fb.group({
-      name: ["", [Validators.required]],
-      date: ["", [Validators.required]],
-      time: ["", [Validators.required]],
-      location: ["", [Validators.required]],
-      description: ["", [Validators.required]],
-      target: ["", [Validators.required]],
-      know: ["", [Validators.required]],
-      reason: ["", [Validators.required]],
-      will_happen: ["", [Validators.required]],
-      duration: ["", [Validators.required]],
-    });
+  
 
+  ngOnInit(): void {
+    if (this.popupService.meetupToEdit) {
+    this.form = this.fb.group({
+      name: [this.popupService.meetupToEdit.name, [Validators.required]],
+      date: [this.popupService.meetupToEdit.time, [Validators.required]],
+      time: [this.popupService.meetupToEdit.time, [Validators.required]],
+      location: [this.popupService.meetupToEdit.location, [Validators.required]],
+      description: [this.popupService.meetupToEdit.description, [Validators.required]],
+      target: [this.popupService.meetupToEdit.target_audience, [Validators.required]],
+      know: [this.popupService.meetupToEdit.need_to_know, [Validators.required]],
+      reason: [this.popupService.meetupToEdit.reason_to_come, [Validators.required]],
+      will_happen: [this.popupService.meetupToEdit.will_happen, [Validators.required]],
+      duration: [this.popupService.meetupToEdit.duration, [Validators.required]],
+    });
+    } else {
+      this.form = this.fb.group({
+        name: ["", [Validators.required]],
+        date: ["", [Validators.required]],
+        time: ["", [Validators.required]],
+        location: ["", [Validators.required]],
+        description: ["", [Validators.required]],
+        target: ["", [Validators.required]],
+        know: ["", [Validators.required]],
+        reason: ["", [Validators.required]],
+        will_happen: ["", [Validators.required]],
+        duration: ["", [Validators.required]],
+      });
+    }
     this.form.valueChanges.subscribe((value) =>
       console.log(`${value.name}: ${value.time}`)
     );
+  
   }
 
   closePopup() {
@@ -49,6 +66,17 @@ export class MeetupPopupComponent implements OnInit {
   onSubmit(): void {
     if (this.form.valid) {
       const meetupData: Meetup = this.convertData(this.form.value);
+      if (this.popupService.meetupToEdit) {
+        this.meetupService.editMeetup(this.popupService.meetupToEdit.id, meetupData).subscribe(
+          (response: ExtendedMeetup) => {
+            this.popupService.close();
+            console.log("Meetup created successfully:", response);
+          },
+          (error) => {
+            console.error("Failed to create meetup:", error);
+          }
+        );
+      } else {
       this.meetupService.createMeetup(meetupData).subscribe(
         (response: ExtendedMeetup) => {
           this.popupService.close();
@@ -58,7 +86,7 @@ export class MeetupPopupComponent implements OnInit {
           console.error("Failed to create meetup:", error);
         }
       );
-    }
+    }}
   }
 
   private convertData(formData: any): Meetup {

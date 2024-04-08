@@ -11,13 +11,13 @@ export class UserItemComponent {
 
   @Input() item: User;
 
+  isEditing: boolean = false;
+
   constructor(public popupService: PopupService) {}
 
   openPopup() {
     this.popupService.open();
   }
-
-  isEditing: boolean = false;
 
   toggleEditing() {
     this.isEditing = !this.isEditing;

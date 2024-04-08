@@ -18,6 +18,7 @@ export class UsersComponent {
   openPopup() {
     this.popupService.open();
   }
+
   isLoading = false;
   
   ngOnInit() {
