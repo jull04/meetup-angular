@@ -37,10 +37,10 @@ const routes: Routes = [
     component: UsersComponent,
     canActivate: [authGuard, adminGuard]
   },
-  // {
-  //   path: '**',
-  //   redirectTo: '/about'
-  // },
+  {
+    path: '**',
+    redirectTo: '/about'
+  },
 ];
 
 @NgModule({

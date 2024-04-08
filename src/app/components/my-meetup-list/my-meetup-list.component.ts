@@ -13,9 +13,7 @@ import { ExtendedMeetup } from '../../models/meetup';
 })
 export class MyMeetupListComponent {
 
-  user: User;
-
-  meetups$ = this.meetupService.meetups$.pipe(map((meetups: ExtendedMeetup[]) => meetups.filter(meetup => meetup.owner?.id === this.authService.user$.value?.id)),)
+  meetups$ = this.meetupService.meetups$.pipe(map((meetups: ExtendedMeetup[]) => meetups.filter(meetup => meetup.owner?.id === this.authService.user$.value?.id)))
   isLoading$ = new BehaviorSubject<boolean>(true);
 
   constructor (public popupService: PopupService, public meetupService: MeetupService, public authService: AuthService) {}

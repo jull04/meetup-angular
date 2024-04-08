@@ -4,6 +4,6 @@
   <app-meetup-popup *ngIf="popupService.isOpened()"></app-meetup-popup>
   <app-loader *ngIf="isLoading$ | async"></app-loader>
   <ul class="meetups-list" *ngFor="let meetup of meetups$ | async">
-    <app-meetup-item [item]="meetup"></app-meetup-item>
+    <app-meetup-item [currentMeetup]="meetup"></app-meetup-item>
   </ul>
 </section>

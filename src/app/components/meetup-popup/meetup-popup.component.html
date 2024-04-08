@@ -6,7 +6,7 @@
 <div class="popup">
   <div class="popup-content">
     <button class="close-btn" (click)="closePopup()">x</button>
-    <h2 class="form-title">Новый митап</h2>
+    <h2 class="form-title">{{popupService.meetupToEdit ? 'Редактировать' : 'Новый митап'}}</h2>
     <form [formGroup]="form" noValidate (ngSubmit)="onSubmit()" *ngIf="form">
       <div class="form-group">
         <label for="title">Название:</label>
