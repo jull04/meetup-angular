@@ -52,7 +52,7 @@ export class MeetupPopupComponent implements OnInit {
       });
     }
     this.form.valueChanges.subscribe((value) =>
-      console.log(`${value.name}: ${value.time}`)
+      console.log(`${value.name}`)
     );
   
   }
@@ -68,20 +68,20 @@ export class MeetupPopupComponent implements OnInit {
         this.meetupService.editMeetup(this.popupService.meetupToEdit.id, meetupData).subscribe({
           next: (response: ExtendedMeetup) => {
             this.popupService.close();
-            console.log("Meetup created successfully:", response);
+            console.log("Митап отредактирован успешно", response);
           },
           error: (error) => {
-            console.error("Failed to create meetup:", error);
+            console.error("Ошибка редактирования митапа", error);
           }
       });
       } else {
       this.meetupService.createMeetup(meetupData).subscribe({
         next: (response: ExtendedMeetup) => {
           this.popupService.close();
-          console.log("Meetup created successfully:", response);
+          console.log("Митап создался успешно", response);
         },
         error: (error) => {
-          console.error("Failed to create meetup:", error);
+          console.error("Ошибка создания митапа", error);
         }
       });
     }}

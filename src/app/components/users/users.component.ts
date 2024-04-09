@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BehaviorSubject, tap } from 'rxjs';
 import { User } from '../../models/user';
 import { PopupService } from '../../services/popup.service';
 import { UserService } from '../../services/user.service';
@@ -14,13 +15,11 @@ export class UsersComponent {
   users$ = this.userService.getUsers()
 
   constructor(public userService: UserService, public popupService: PopupService) {}
+  isLoading$ = new BehaviorSubject<boolean>(true);
 
-  isLoading = false;
-  
   ngOnInit() {
-    this.isLoading = true;
-    this.users$.subscribe(
-      () => this.isLoading = false
-    );
+    this.userService.getUsers().pipe(tap(() => {
+      this.isLoading$.next(false)
+    })).subscribe()
   }
 }

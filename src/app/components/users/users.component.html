@@ -1,5 +1,5 @@
 <section class="user">
-  <app-loader *ngIf="isLoading"></app-loader>
+  <app-loader *ngIf="isLoading$ | async"></app-loader>
   <ul class="user-list" *ngFor="let user of users$ | async">
     <app-user-item [item]="user"></app-user-item>
   </ul>
