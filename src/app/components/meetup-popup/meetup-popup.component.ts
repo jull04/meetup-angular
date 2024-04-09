@@ -22,8 +22,8 @@ export class MeetupPopupComponent implements OnInit {
     if (this.popupService.meetupToEdit) {
       this.form = this.fb.group({
         name: [this.popupService.meetupToEdit.name, [Validators.required]],
-        date: [this.popupService.meetupToEdit.time, [Validators.required]],
-        time: [this.popupService.meetupToEdit.time, [Validators.required]],
+        date: [new Date(this.popupService.meetupToEdit.time).toLocaleDateString('ru-RU').split('.').reverse().join('-'), [Validators.required]],
+        time: [new Date(this.popupService.meetupToEdit.time).toLocaleTimeString(), [Validators.required]],
         location: [
           this.popupService.meetupToEdit.location,
           [Validators.required],
@@ -78,7 +78,7 @@ export class MeetupPopupComponent implements OnInit {
       const meetupData: Meetup = this.convertData(this.form.value);
       if (this.popupService.meetupToEdit) {
         this.meetupService
-          .editMeetup(this.popupService.meetupToEdit.id, meetupData)
+          .editMeetup(this.popupService.meetupToEdit, meetupData)
           .subscribe({
             next: (response: ExtendedMeetup) => {
               this.popupService.close();

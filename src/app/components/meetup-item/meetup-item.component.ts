@@ -11,7 +11,6 @@ import { PopupService } from "../../services/popup.service";
   styleUrl: "./meetup-item.component.scss",
 })
 export class MeetupItemComponent {
-
   @Input() currentMeetup: ExtendedMeetup;
 
   constructor(

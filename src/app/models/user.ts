@@ -9,3 +9,8 @@ export interface User {
 export interface Role {
   name: string;
 }
+
+export interface UserRoleUpdateBody {
+  names: string[];
+  userId: number;
+}

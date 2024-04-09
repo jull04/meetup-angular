@@ -124,22 +124,22 @@ export class MeetupService {
     )
   }
 
-  editMeetup(id: number, meetup: Meetup): Observable<ExtendedMeetup> {
+  editMeetup(currentMeetUp: ExtendedMeetup, updatedMeetup: Meetup): Observable<ExtendedMeetup> {
     return this.http
-      .put<ExtendedMeetup>(`${this.baseUrl}/meetup/${id}`, meetup, {
+      .put<ExtendedMeetup>(`${this.baseUrl}/meetup/${currentMeetUp.id}`, updatedMeetup, {
         headers: new HttpHeaders({
           "Content-Type": "application/json",
         }),
       })
       .pipe(
-        // map(updatedMeetup => {
-        //   // Добавляем или обновляем поле owners в объекте updatedMeetup
-        //   updatedMeetup.owner = this.authService.user$.value;
-        //   return updatedMeetup;
-        // }),
+        map(updatedMeetup => {
+          // Добавляем или обновляем поле owners в объекте updatedMeetup
+          return {...updatedMeetup, owner: currentMeetUp.owner}
+        }),
         tap((updatedMeetup) => {
+          console.log(updatedMeetup)
           const updatedMeetupIndex = this.meetups$.value.findIndex(
-            (item) => item.id === id
+            (item) => item.id === currentMeetUp.id
           );
           this.meetups$.next([
             ...this.meetups$.value.slice(0, updatedMeetupIndex),

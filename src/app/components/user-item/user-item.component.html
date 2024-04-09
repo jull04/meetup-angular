@@ -1,12 +1,15 @@
 <li class="user-item" *ngIf="item">
-    <input class="user-email" disabled value="{{item.email}}">
+    <form [formGroup]="form" noValidate (ngSubmit)="onSubmit()" *ngIf="form">
+    <input class="user-email" disabled [value]="item.email">
     <input class="user-password" disabled type=password value="{{item.password}}">
-    <select class="user-role" [disabled]="!isEditing">
+    <select class="user-role" [disabled]="!isEditing" formControlName="role">
       <option value="user">user</option>
       <option value="admin">admin</option>
     </select>
     <div class="icon-container">
-        <div class="edit" (click)="toggleEditing()" [ngClass]="{'active': isEditing}"></div>
-        <div class="delete" (click)="deleteMeetup()"></div>
+        <button class="edit" (click)="toggleEditing()" *ngIf="!isEditing"></button>
+        <button class="edit active" (click)="toggleEditing()" *ngIf="isEditing" type="submit"></button>
+        <button class="delete" (click)="deleteMeetup()"></button>
     </div>
+</form>
 </li>
