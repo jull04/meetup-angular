@@ -2,11 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ExtendedMeetup, Meetup } from "../../models/meetup";
 import { MeetupService } from "../../services/meetup.service";
 import { PopupService } from "../../services/popup.service";
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-} from "@angular/forms";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-meetup-popup",
@@ -24,18 +20,39 @@ export class MeetupPopupComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.popupService.meetupToEdit) {
-    this.form = this.fb.group({
-      name: [this.popupService.meetupToEdit.name, [Validators.required]],
-      date: [this.popupService.meetupToEdit.time, [Validators.required]],
-      time: [this.popupService.meetupToEdit.time, [Validators.required]],
-      location: [this.popupService.meetupToEdit.location, [Validators.required]],
-      description: [this.popupService.meetupToEdit.description, [Validators.required]],
-      target: [this.popupService.meetupToEdit.target_audience, [Validators.required]],
-      know: [this.popupService.meetupToEdit.need_to_know, [Validators.required]],
-      reason: [this.popupService.meetupToEdit.reason_to_come, [Validators.required]],
-      will_happen: [this.popupService.meetupToEdit.will_happen, [Validators.required]],
-      duration: [this.popupService.meetupToEdit.duration, [Validators.required]],
-    });
+      this.form = this.fb.group({
+        name: [this.popupService.meetupToEdit.name, [Validators.required]],
+        date: [this.popupService.meetupToEdit.time, [Validators.required]],
+        time: [this.popupService.meetupToEdit.time, [Validators.required]],
+        location: [
+          this.popupService.meetupToEdit.location,
+          [Validators.required],
+        ],
+        description: [
+          this.popupService.meetupToEdit.description,
+          [Validators.required],
+        ],
+        target: [
+          this.popupService.meetupToEdit.target_audience,
+          [Validators.required],
+        ],
+        know: [
+          this.popupService.meetupToEdit.need_to_know,
+          [Validators.required],
+        ],
+        reason: [
+          this.popupService.meetupToEdit.reason_to_come,
+          [Validators.required],
+        ],
+        will_happen: [
+          this.popupService.meetupToEdit.will_happen,
+          [Validators.required],
+        ],
+        duration: [
+          this.popupService.meetupToEdit.duration,
+          [Validators.required],
+        ],
+      });
     } else {
       this.form = this.fb.group({
         name: ["", [Validators.required]],
@@ -50,9 +67,6 @@ export class MeetupPopupComponent implements OnInit {
         duration: ["", [Validators.required]],
       });
     }
-    this.form.valueChanges.subscribe((value) =>
-      console.log(`${value.name}`)
-    );
   }
 
   closePopup() {
@@ -63,33 +77,36 @@ export class MeetupPopupComponent implements OnInit {
     if (this.form.valid) {
       const meetupData: Meetup = this.convertData(this.form.value);
       if (this.popupService.meetupToEdit) {
-        this.meetupService.editMeetup(this.popupService.meetupToEdit.id, meetupData).subscribe({
+        this.meetupService
+          .editMeetup(this.popupService.meetupToEdit.id, meetupData)
+          .subscribe({
+            next: (response: ExtendedMeetup) => {
+              this.popupService.close();
+              console.log("Митап отредактирован успешно", response);
+            },
+            error: (error) => {
+              console.error("Ошибка редактирования митапа", error);
+            },
+          });
+      } else {
+        this.meetupService.createMeetup(meetupData).subscribe({
           next: (response: ExtendedMeetup) => {
             this.popupService.close();
-            console.log("Митап отредактирован успешно", response);
+            console.log("Митап создался успешно", response);
           },
           error: (error) => {
-            console.error("Ошибка редактирования митапа", error);
-          }
-      });
-      } else {
-      this.meetupService.createMeetup(meetupData).subscribe({
-        next: (response: ExtendedMeetup) => {
-          this.popupService.close();
-          console.log("Митап создался успешно", response);
-        },
-        error: (error) => {
-          console.error("Ошибка создания митапа", error);
-        }
-      });
-    }}
+            console.error("Ошибка создания митапа", error);
+          },
+        });
+      }
+    }
   }
 
   private convertData(formData: any): Meetup {
     return {
       name: formData.name,
       description: formData.description,
-      time: new Date(formData.date + ' ' + formData.time).toISOString(),
+      time: new Date(formData.date + " " + formData.time).toISOString(),
       duration: formData.duration,
       location: formData.location,
       target_audience: formData.target,
