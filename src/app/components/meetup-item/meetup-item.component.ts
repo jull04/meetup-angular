@@ -1,7 +1,6 @@
 import { ChangeDetectorRef, Component, Input } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { ExtendedMeetup, Meetup } from "../../models/meetup";
-import { User } from "../../models/user";
 import { AuthService } from "../../services/auth.service";
 import { MeetupService } from "../../services/meetup.service";
 import { PopupService } from "../../services/popup.service";
@@ -12,7 +11,7 @@ import { PopupService } from "../../services/popup.service";
   styleUrl: "./meetup-item.component.scss",
 })
 export class MeetupItemComponent {
-  
+
   @Input() currentMeetup: ExtendedMeetup;
 
   constructor(

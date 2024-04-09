@@ -5,7 +5,6 @@ import { PopupService } from "../../services/popup.service";
 import {
   FormGroup,
   FormBuilder,
-  FormControl,
   Validators,
 } from "@angular/forms";
 
@@ -54,7 +53,6 @@ export class MeetupPopupComponent implements OnInit {
     this.form.valueChanges.subscribe((value) =>
       console.log(`${value.name}`)
     );
-  
   }
 
   closePopup() {

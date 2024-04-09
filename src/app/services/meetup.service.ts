@@ -3,7 +3,6 @@ import { Injectable } from "@angular/core";
 import {
   BehaviorSubject,
   catchError,
-  filter,
   map,
   Observable,
   tap,

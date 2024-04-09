@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { MeetupService } from '../../services/meetup.service';
 import { PopupService } from '../../services/popup.service';
-import { User } from '../../models/user';
 import { BehaviorSubject, map, tap } from 'rxjs';
 import { ExtendedMeetup } from '../../models/meetup';
 

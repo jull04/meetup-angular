@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { BehaviorSubject, tap } from 'rxjs';
-import { User } from '../../models/user';
 import { PopupService } from '../../services/popup.service';
 import { UserService } from '../../services/user.service';
 

@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { BehaviorSubject, tap } from 'rxjs';
-import { ExtendedMeetup, Meetup } from '../../models/meetup';
 import { AuthService } from '../../services/auth.service';
 import { MeetupService } from '../../services/meetup.service';
 import { PopupService } from '../../services/popup.service';
@@ -10,6 +9,7 @@ import { PopupService } from '../../services/popup.service';
   templateUrl: './meetup-list.component.html',
   styleUrl: './meetup-list.component.scss',
 })
+
 export class MeetupListComponent {
 
   meetups$ = this.meetupService.meetups$
