@@ -18,7 +18,6 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { MeetupItemComponent } from './components/meetup-item/meetup-item.component';
 import { MeetupSearchComponent } from './components/meetup-search/meetup-search.component';
 import { UserItemComponent } from './components/user-item/user-item.component';
-import { DeletePopupComponent } from './components/delete-popup/delete-popup.component';
 import { MyMeetupListComponent } from './components/my-meetup-list/my-meetup-list.component';
 import { HeaderComponent } from './components/header/header.component';
 
@@ -36,7 +35,6 @@ import { HeaderComponent } from './components/header/header.component';
     MeetupItemComponent,
     MeetupSearchComponent,
     UserItemComponent,
-    DeletePopupComponent,
     MyMeetupListComponent,
     HeaderComponent
   ],

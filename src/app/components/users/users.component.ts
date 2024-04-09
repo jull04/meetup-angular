@@ -15,10 +15,6 @@ export class UsersComponent {
 
   constructor(public userService: UserService, public popupService: PopupService) {}
 
-  openPopup() {
-    this.popupService.open();
-  }
-
   isLoading = false;
   
   ngOnInit() {

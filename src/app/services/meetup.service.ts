@@ -10,7 +10,6 @@ import {
 } from "rxjs";
 import { environment } from "../../environments/environment";
 import { ExtendedMeetup, Meetup } from "../models/meetup";
-import { User } from "../models/user";
 import { AuthService } from "./auth.service";
 
 @Injectable({
@@ -41,7 +40,6 @@ export class MeetupService {
         tap((meetups) => {
           this.meetups$.next(meetups);
         }),
-
         catchError((error): Observable<never> => {
           console.error(error.error.message);
           throw new Error(error.error.message);
@@ -119,7 +117,12 @@ export class MeetupService {
           updatedMeetup,
           ...this.meetups$.value.slice(updatedMeetupIndex + 1),
         ]);
-      }))
+      }),
+      catchError((error): Observable<never> => {
+        console.error(error.error.message);
+        throw new Error(error.error.message);
+      })
+    )
   }
 
   editMeetup(id: number, meetup: Meetup): Observable<ExtendedMeetup> {
@@ -130,15 +133,19 @@ export class MeetupService {
         }),
       })
       .pipe(
+        // map(updatedMeetup => {
+        //   // Добавляем или обновляем поле owners в объекте updatedMeetup
+        //   updatedMeetup.owner = this.authService.user$.value;
+        //   return updatedMeetup;
+        // }),
         tap((updatedMeetup) => {
-          const filteredMeetups = this.meetups$.value.filter(meetup => meetup.owner?.id === this.authService.user$.value?.id)
-          const updatedMeetupIndex = filteredMeetups.findIndex(
+          const updatedMeetupIndex = this.meetups$.value.findIndex(
             (item) => item.id === id
           );
           this.meetups$.next([
-            ...filteredMeetups.slice(0, updatedMeetupIndex),
+            ...this.meetups$.value.slice(0, updatedMeetupIndex),
             updatedMeetup,
-            ...filteredMeetups.slice(updatedMeetupIndex + 1),
+            ...this.meetups$.value.slice(updatedMeetupIndex + 1),
           ]);
         }),
         catchError((error): Observable<never> => {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BehaviorSubject, tap } from 'rxjs';
 import { ExtendedMeetup, Meetup } from '../../models/meetup';
 import { AuthService } from '../../services/auth.service';
@@ -14,6 +14,12 @@ export class MeetupListComponent {
 
   meetups$ = this.meetupService.meetups$
   isLoading$ = new BehaviorSubject<boolean>(true);
+
+  @Input() search: string;
+
+  handleSearch(event: {search: string}) {
+    this.search = event.search;
+  }
 
   constructor (public popupService: PopupService, public meetupService: MeetupService, public authService: AuthService) {}
 

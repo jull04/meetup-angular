@@ -62,6 +62,11 @@
   opacity: 0.7;
 }
 
+.save-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed; 
+}
+
 .accord-button {
   border: none;
   background-color: #b85526;

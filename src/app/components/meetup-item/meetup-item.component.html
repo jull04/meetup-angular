@@ -67,6 +67,7 @@
         class="save-button"
         (click)="onSubscribe()"
         [ngClass]="{ 'save-button-active': isButtonActive }"
+        [disabled]="isOwner"
       >
         {{ buttonText }}
       </button>

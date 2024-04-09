@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { User } from '../models/user';
 import { AuthService } from './auth.service';
@@ -11,6 +11,8 @@ import { AuthService } from './auth.service';
 export class UserService {
 
   baseUrl: string = `${environment.base_url}`;
+
+  users$ = new BehaviorSubject<User[]>([]);
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
@@ -39,6 +41,16 @@ export class UserService {
       })
     })
     .pipe(
+      // tap((updatedUser) => {
+      //   const updatedUserIndex = this.users$.value.findIndex(
+      //     (item) => item.id === id
+      //   );
+      //   this.users$.next([
+      //     ...this.users$.value.slice(0, updatedUserIndex),
+      //     updatedUser,
+      //     ...this.users$.value.slice(updatedUserIndex + 1),
+      //   ]);
+      // }),
       catchError((error): Observable<never> => {
         console.error(error.error.message);
         throw new Error(error.error.message);
@@ -49,6 +61,15 @@ export class UserService {
   deleteUser(id: number): Observable<User[]> {
     return this.http.delete<User[]>(`${this.baseUrl}/user/${id}`)
     .pipe(
+      tap(() => {
+        const userToDeleteIndex = this.users$.value.findIndex(
+          (item) => item.id === id
+        );
+        this.users$.next([
+          ...this.users$.value.slice(0, userToDeleteIndex),
+          ...this.users$.value.slice(userToDeleteIndex + 1),
+        ]);
+      }),
       catchError((error): Observable<never> => {
         console.error(error.error.message);
         throw new Error(error.error.message);

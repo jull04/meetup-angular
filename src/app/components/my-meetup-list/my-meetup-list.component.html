@@ -1,5 +1,4 @@
 <section class="meetups">
-    <app-meetup-search></app-meetup-search>
     <button class="add-button" (click)="openPopup()">Создать митап</button>
     <app-meetup-popup *ngIf="popupService.isOpened()"></app-meetup-popup>
     <app-loader *ngIf="isLoading$ | async"></app-loader>

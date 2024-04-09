@@ -23,8 +23,6 @@ export class MeetupPopupComponent implements OnInit {
     public fb: FormBuilder
   ) {}
 
-  
-
   ngOnInit(): void {
     if (this.popupService.meetupToEdit) {
     this.form = this.fb.group({
@@ -67,25 +65,25 @@ export class MeetupPopupComponent implements OnInit {
     if (this.form.valid) {
       const meetupData: Meetup = this.convertData(this.form.value);
       if (this.popupService.meetupToEdit) {
-        this.meetupService.editMeetup(this.popupService.meetupToEdit.id, meetupData).subscribe(
-          (response: ExtendedMeetup) => {
+        this.meetupService.editMeetup(this.popupService.meetupToEdit.id, meetupData).subscribe({
+          next: (response: ExtendedMeetup) => {
             this.popupService.close();
             console.log("Meetup created successfully:", response);
           },
-          (error) => {
+          error: (error) => {
             console.error("Failed to create meetup:", error);
           }
-        );
+      });
       } else {
-      this.meetupService.createMeetup(meetupData).subscribe(
-        (response: ExtendedMeetup) => {
+      this.meetupService.createMeetup(meetupData).subscribe({
+        next: (response: ExtendedMeetup) => {
           this.popupService.close();
           console.log("Meetup created successfully:", response);
         },
-        (error) => {
+        error: (error) => {
           console.error("Failed to create meetup:", error);
         }
-      );
+      });
     }}
   }
 

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import '@angular/compiler'; 
 
 @Component({
   selector: 'app-meetup-search',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './meetup-search.component.scss'
 })
 export class MeetupSearchComponent {
+
+  search = '';
+
+  @Output() onSearch = new EventEmitter<{search: string}>();
 
 }

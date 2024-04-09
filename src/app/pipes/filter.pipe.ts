@@ -2,14 +2,14 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Meetup } from '../models/meetup';
 
 @Pipe({
-  name: 'filterTodos',
+  name: 'filterMeetups',
 })
 export class FilterPipe implements PipeTransform {
   transform(mmetups: Meetup[], search: string): Meetup[] {
     console.log(search);
-    return mmetups.filter((mmetups) => {
+    return mmetups.filter((metups) => {
       return (
-        mmetups.name.toLowerCase().includes(search.toLowerCase())
+        metups.name.toLowerCase().includes(search.toLowerCase())
       );
     });
   }
