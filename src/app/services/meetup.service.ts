@@ -80,6 +80,7 @@ export class MeetupService {
         }
       )
       .pipe(
+        // обновляем  список митапов в BehaviorSubject
         tap((updatedMeetup) => {
           const updatedMeetupIndex = this.meetups$.value.findIndex(
             (item) => item.id === meetup.id

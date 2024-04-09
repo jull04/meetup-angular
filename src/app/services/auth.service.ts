@@ -19,16 +19,9 @@ export class AuthService {
     @Inject(DOCUMENT) private readonly document: Document
   ) {}
 
+  //метод ссылается на объект window текущего документа браузера, 
+  //свойство defaultView объекта document дает доступ к глобальному объекту window
   private readonly window = this.document.defaultView!;
-
-  checkToken(): boolean {
-    const token = this.window?.localStorage.getItem("token");
-    if (token) {
-      return true;
-    } else {
-      return false;
-    }
-  }
 
   login(user: User): Observable<User> {
     return this.http
