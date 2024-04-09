@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { tap } from 'rxjs';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-signin',
@@ -15,7 +16,7 @@ export class SigninComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private _fb: UntypedFormBuilder,
+    private _fb: FormBuilder,
     private _router: Router
     ) {}
     

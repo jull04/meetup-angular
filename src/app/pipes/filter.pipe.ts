@@ -1,19 +1,15 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { IItem } from '../models/todo';
+import { Meetup } from '../models/meetup';
 
 @Pipe({
   name: 'filterTodos',
 })
 export class FilterPipe implements PipeTransform {
-  transform(todos: IItem[], search: string, filter: string): IItem[] {
+  transform(mmetups: Meetup[], search: string): Meetup[] {
     console.log(search);
-    return todos.filter((todo) => {
+    return mmetups.filter((mmetups) => {
       return (
-        todo.name.toLowerCase().includes(search.toLowerCase()) &&
-        (filter === '' ||
-          (filter === 'normal' && !todo.important) ||
-          (filter === 'important' && todo.important) ||
-          (filter === 'completed' && todo.isCompleted))
+        mmetups.name.toLowerCase().includes(search.toLowerCase())
       );
     });
   }

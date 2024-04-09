@@ -1,29 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
-import { tap } from 'rxjs';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { AuthService } from "../../services/auth.service";
+import { Router } from "@angular/router";
+import { tap } from "rxjs";
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrl: './signup.component.scss'
+  selector: "app-signup",
+  templateUrl: "./signup.component.html",
+  styleUrl: "./signup.component.scss",
 })
 export class SignupComponent implements OnInit {
-
   form!: FormGroup;
 
   constructor(
     private auth: AuthService,
     private _router: Router,
-    private _fb: UntypedFormBuilder
-    ) {}
+    private _fb: FormBuilder
+  ) {}
   ngOnInit(): void {
     this.form = this._fb.group({
-      email: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      fio: ['', [Validators.required]]
-    })
+      email: ["", [Validators.required]],
+      password: ["", [Validators.required]],
+      fio: ["", [Validators.required]],
+    });
   }
 
   onSubmit() {
@@ -31,9 +30,9 @@ export class SignupComponent implements OnInit {
       .register(this.form.value)
       .pipe(
         tap(() => {
-          this._router.navigate(['/signin'])
+          this._router.navigate(["/signin"]);
         })
       )
-      .subscribe()
+      .subscribe();
   }
 }
