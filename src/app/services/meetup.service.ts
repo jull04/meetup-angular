@@ -36,6 +36,7 @@ export class MeetupService {
             return [];
           }
         }),
+        //положили актуальные митапы
         tap((meetups) => {
           this.meetups$.next(meetups);
         }),

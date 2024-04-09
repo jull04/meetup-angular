@@ -21,6 +21,15 @@ export class AuthService {
 
   private readonly window = this.document.defaultView!;
 
+  checkToken(): boolean {
+    const token = this.window?.localStorage.getItem("token");
+    if (token) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   login(user: User): Observable<User> {
     return this.http
       .post<{ token: string }>(`${this.baseUrl}/login`, user)

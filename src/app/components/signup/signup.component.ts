@@ -1,15 +1,16 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AuthService } from "../../services/auth.service";
 import { Router } from "@angular/router";
-import { tap } from "rxjs";
+import { Subscription, tap } from "rxjs";
 
 @Component({
   selector: "app-signup",
   templateUrl: "./signup.component.html",
   styleUrl: "./signup.component.scss",
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnInit, OnDestroy {
+  subscription: Subscription;
   form!: FormGroup;
 
   constructor(
@@ -26,7 +27,8 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() {
-    this.auth
+    // Сохраняем подписку на Observable
+    this.subscription = this.auth
       .register(this.form.value)
       .pipe(
         tap(() => {
@@ -34,5 +36,12 @@ export class SignupComponent implements OnInit {
         })
       )
       .subscribe();
+  }
+
+  ngOnDestroy(): void {
+    // Отписываемся от подписки при уничтожении компонента
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

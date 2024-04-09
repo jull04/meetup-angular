@@ -1,5 +1,6 @@
-import { ChangeDetectorRef, Component, Input } from "@angular/core";
+import { ChangeDetectorRef, Component, Input, OnDestroy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { Subscription } from "rxjs";
 import { ExtendedMeetup, Meetup } from "../../models/meetup";
 import { AuthService } from "../../services/auth.service";
 import { MeetupService } from "../../services/meetup.service";
@@ -10,7 +11,7 @@ import { PopupService } from "../../services/popup.service";
   templateUrl: "./meetup-item.component.html",
   styleUrl: "./meetup-item.component.scss",
 })
-export class MeetupItemComponent {
+export class MeetupItemComponent implements OnDestroy {
   @Input() currentMeetup: ExtendedMeetup;
 
   constructor(
@@ -26,6 +27,7 @@ export class MeetupItemComponent {
   isEditMode: boolean = false;
   buttonText = "";
   isButtonActive = false;
+  subscription: Subscription;
 
   checkOwner() {
     this.isOwner =
@@ -37,7 +39,7 @@ export class MeetupItemComponent {
   }
 
   deleteMeetup() {
-    this.meetupService.deleteMeetup(this.currentMeetup.id).subscribe({
+    this.subscription = this.meetupService.deleteMeetup(this.currentMeetup.id).subscribe({
       next: (response) => {
         console.log("Митап успешно удален", response);
         this.toggleButtonText();
@@ -54,7 +56,7 @@ export class MeetupItemComponent {
         (user) => this.authService.user$.value?.id === user.id
       )
     ) {
-      this.meetupService.unsubscribeFromMeetup(this.currentMeetup).subscribe({
+      this.subscription = this.meetupService.unsubscribeFromMeetup(this.currentMeetup).subscribe({
         next: (response) => {
           console.log("Успешно отподписан на митап", response);
           this.toggleButtonText();
@@ -64,7 +66,7 @@ export class MeetupItemComponent {
         },
       });
     } else {
-      this.meetupService.subscribeForMeetup(this.currentMeetup).subscribe({
+      this.subscription = this.meetupService.subscribeForMeetup(this.currentMeetup).subscribe({
         next: (response) => {
           console.log("Успешно подписан на митап", response);
           this.toggleButtonText();
@@ -107,6 +109,12 @@ export class MeetupItemComponent {
     // Проверяем, является ли текущий путь путем моих митапов
     if (currentPath === "my-meetups") {
       this.isEditMode = true;
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe(); // отписываемся от подписки при уничтожении компонента
     }
   }
 }

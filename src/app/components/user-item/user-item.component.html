@@ -1,7 +1,7 @@
 <li class="user-item" *ngIf="item">
-    <form [formGroup]="form" noValidate (ngSubmit)="onSubmit()" *ngIf="form">
+    <form class="user-form" [formGroup]="form" noValidate (ngSubmit)="onSubmit()">
     <input class="user-email" disabled [value]="item.email">
-    <input class="user-password" disabled type=password value="{{item.password}}">
+    <input class="user-password" disabled type=password [value]="item.password">
     <select class="user-role" [disabled]="!isEditing" formControlName="role">
       <option value="user">user</option>
       <option value="admin">admin</option>

@@ -69,16 +69,6 @@ export class UserService {
       })
     })
     .pipe(
-      // tap((updatedUser) => {
-      //   const updatedUserIndex = this.users$.value.findIndex(
-      //     (item) => item.id === id
-      //   );
-      //   this.users$.next([
-      //     ...this.users$.value.slice(0, updatedUserIndex),
-      //     updatedUser,
-      //     ...this.users$.value.slice(updatedUserIndex + 1),
-      //   ]);
-      // }),
       catchError((error): Observable<never> => {
         console.error(error.error.message);
         throw new Error(error.error.message);

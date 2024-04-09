@@ -1,5 +1,5 @@
-import { Component, Input } from "@angular/core";
-import { BehaviorSubject, tap } from "rxjs";
+import { Component, Input, OnDestroy } from "@angular/core";
+import { BehaviorSubject, Subscription, tap } from "rxjs";
 import { AuthService } from "../../services/auth.service";
 import { MeetupService } from "../../services/meetup.service";
 import { PopupService } from "../../services/popup.service";
@@ -9,10 +9,10 @@ import { PopupService } from "../../services/popup.service";
   templateUrl: "./meetup-list.component.html",
   styleUrl: "./meetup-list.component.scss",
 })
-export class MeetupListComponent {
+export class MeetupListComponent implements OnDestroy {
   meetups$ = this.meetupService.meetups$;
   isLoading$ = new BehaviorSubject<boolean>(true);
-
+  subscription: Subscription;
   search = "";
 
   handleSearch(event: { search: string }) {
@@ -30,7 +30,8 @@ export class MeetupListComponent {
   }
 
   ngOnInit() {
-    this.meetupService
+    // Сохраняем подписку на Observable
+    this.subscription = this.meetupService
       .getMeetups()
       .pipe(
         tap(() => {
@@ -38,5 +39,12 @@ export class MeetupListComponent {
         })
       )
       .subscribe();
+  }
+
+  ngOnDestroy(): void {
+    // Отписываемся от подписки при уничтожении компонента
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

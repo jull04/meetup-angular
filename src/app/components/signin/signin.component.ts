@@ -1,7 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AuthService } from "../../services/auth.service";
-import { tap } from "rxjs";
+import { Subscription, tap } from "rxjs";
 import { Router } from "@angular/router";
 
 @Component({
@@ -9,7 +9,8 @@ import { Router } from "@angular/router";
   templateUrl: "./signin.component.html",
   styleUrl: "./signin.component.scss",
 })
-export class SigninComponent implements OnInit {
+export class SigninComponent implements OnInit, OnDestroy {
+  subscription: Subscription;
   form!: FormGroup;
 
   constructor(
@@ -27,7 +28,8 @@ export class SigninComponent implements OnInit {
   }
 
   onSubmit() {
-    this.auth
+    // Сохраняем подписку на Observable
+    this.subscription = this.auth
       .login(this.form.value)
       .pipe(
         tap(() => {
@@ -35,5 +37,12 @@ export class SigninComponent implements OnInit {
         })
       )
       .subscribe();
+  }
+
+  ngOnDestroy(): void {
+    // Отписываемся от подписки при уничтожении компонента
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

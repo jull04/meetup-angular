@@ -1,16 +1,19 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ExtendedMeetup, Meetup } from "../../models/meetup";
 import { MeetupService } from "../../services/meetup.service";
 import { PopupService } from "../../services/popup.service";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-meetup-popup",
   templateUrl: "./meetup-popup.component.html",
   styleUrl: "./meetup-popup.component.scss",
 })
-export class MeetupPopupComponent implements OnInit {
+export class MeetupPopupComponent implements OnInit, OnDestroy {
   form!: FormGroup;
+  private createMeetupSubscription: Subscription;
+  private editMeetupSubscription: Subscription;
 
   constructor(
     public popupService: PopupService,
@@ -22,8 +25,18 @@ export class MeetupPopupComponent implements OnInit {
     if (this.popupService.meetupToEdit) {
       this.form = this.fb.group({
         name: [this.popupService.meetupToEdit.name, [Validators.required]],
-        date: [new Date(this.popupService.meetupToEdit.time).toLocaleDateString('ru-RU').split('.').reverse().join('-'), [Validators.required]],
-        time: [new Date(this.popupService.meetupToEdit.time).toLocaleTimeString(), [Validators.required]],
+        date: [
+          new Date(this.popupService.meetupToEdit.time)
+            .toLocaleDateString("ru-RU")
+            .split(".")
+            .reverse()
+            .join("-"),
+          [Validators.required],
+        ],
+        time: [
+          new Date(this.popupService.meetupToEdit.time).toLocaleTimeString(),
+          [Validators.required],
+        ],
         location: [
           this.popupService.meetupToEdit.location,
           [Validators.required],
@@ -77,7 +90,8 @@ export class MeetupPopupComponent implements OnInit {
     if (this.form.valid) {
       const meetupData: Meetup = this.convertData(this.form.value);
       if (this.popupService.meetupToEdit) {
-        this.meetupService
+        // Сохраняем подписку на Observable при редактировании митапа
+        this.editMeetupSubscription = this.meetupService
           .editMeetup(this.popupService.meetupToEdit, meetupData)
           .subscribe({
             next: (response: ExtendedMeetup) => {
@@ -89,7 +103,8 @@ export class MeetupPopupComponent implements OnInit {
             },
           });
       } else {
-        this.meetupService.createMeetup(meetupData).subscribe({
+        // Сохраняем подписку на Observable при создании митапа
+        this.createMeetupSubscription = this.meetupService.createMeetup(meetupData).subscribe({
           next: (response: ExtendedMeetup) => {
             this.popupService.close();
             console.log("Митап создался успешно", response);
@@ -115,4 +130,15 @@ export class MeetupPopupComponent implements OnInit {
       reason_to_come: formData.reason,
     };
   }
+
+  ngOnDestroy(): void {
+    // Отписка от подписок при уничтожении компонента
+    if (this.createMeetupSubscription) {
+    this.createMeetupSubscription.unsubscribe();
+    }
+    if (this.editMeetupSubscription) {
+    this.editMeetupSubscription.unsubscribe();
+    }
+  }
+
 }

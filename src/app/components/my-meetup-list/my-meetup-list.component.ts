@@ -1,8 +1,8 @@
-import { Component } from "@angular/core";
+import { Component, OnDestroy } from "@angular/core";
 import { AuthService } from "../../services/auth.service";
 import { MeetupService } from "../../services/meetup.service";
 import { PopupService } from "../../services/popup.service";
-import { BehaviorSubject, map, tap } from "rxjs";
+import { BehaviorSubject, map, Subscription, tap } from "rxjs";
 import { ExtendedMeetup } from "../../models/meetup";
 
 @Component({
@@ -10,7 +10,9 @@ import { ExtendedMeetup } from "../../models/meetup";
   templateUrl: "./my-meetup-list.component.html",
   styleUrl: "./my-meetup-list.component.scss",
 })
-export class MyMeetupListComponent {
+export class MyMeetupListComponent implements OnDestroy {
+  subscription: Subscription;
+
   meetups$ = this.meetupService.meetups$.pipe(
     map((meetups: ExtendedMeetup[]) =>
       meetups.filter(
@@ -37,7 +39,8 @@ export class MyMeetupListComponent {
   }
 
   ngOnInit() {
-    this.meetupService
+    // Сохраняем подписку на Observable
+    this.subscription = this.meetupService
       .getMeetups()
       .pipe(
         tap(() => {
@@ -45,5 +48,12 @@ export class MyMeetupListComponent {
         })
       )
       .subscribe();
+  }
+
+  ngOnDestroy(): void {
+    // Отписываемся от подписки при уничтожении компонента
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }
